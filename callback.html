@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deriv Bot Callback</title>
+</head>
+<body>
+    <div style="text-align: center; margin-top: 50px; font-family: Arial, sans-serif;">
+        <h2>Memproses Login Deriv...</h2>
+        <p>Harap tunggu, Anda akan dialihkan kembali ke aplikasi.</p>
+    </div>
+
+    <script>
+        // Fungsi untuk mengambil parameter token dari URL setelah login sukses
+        function getQueryString(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Mengambil data token dan akun dari URL Deriv
+        const token1 = getQueryString('token1');
+        const acct1 = getQueryString('acct1');
+
+        if (token1) {
+            console.log("Login sukses! Token didapatkan.");
+            // Menyimpan token ke penyimpanan browser agar bot bisa membacanya
+            localStorage.setItem('oauth_token', token1);
+            localStorage.setItem('oauth_account', acct1);
+            
+            // Mengarahkan kembali pengguna ke bot utama Anda (jika ada halaman utama)
+            // window.location.href = "index.html"; 
+        } else {
+            console.error("Token tidak ditemukan atau login gagal.");
+        }
+    </script>
+</body>
+</html>
